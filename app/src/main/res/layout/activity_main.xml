@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints,UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/react"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/moveRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bắt đầu học tập"
+            tools:ignore="HardcodedText"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="15dp"
+            android:backgroundTint="#6c63ff"
+            />
+
+        <TextView
+            android:id="@+id/moveLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bạn đã có tài khoản? Đăng nhập"
+            tools:ignore="HardcodedText"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:gravity="center"
+            android:padding="20dp"
+            />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
