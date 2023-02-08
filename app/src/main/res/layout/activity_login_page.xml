@@ -73,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đăng nhập"
+            android:backgroundTint="#41c375"
             tools:ignore="HardcodedText" />
 
         <LinearLayout
@@ -92,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="Đăng ký tài khoản"
                 tools:ignore="HardcodedText"
-                android:textColor="@color/purple_700"
+                android:textColor="#41c375"
                 />
         </LinearLayout>
     </LinearLayout>

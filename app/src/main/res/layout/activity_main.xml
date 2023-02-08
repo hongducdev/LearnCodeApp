@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/react"
+            android:src="@drawable/htmlcss"
             tools:ignore="MissingConstraints" />
 
         <Button
@@ -34,7 +34,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="15dp"
-            android:backgroundTint="#6c63ff"
+            android:backgroundTint="#41c375"
             />
 
         <TextView

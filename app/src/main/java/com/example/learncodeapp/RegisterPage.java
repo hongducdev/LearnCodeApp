@@ -68,24 +68,33 @@ public class RegisterPage extends AppCompatActivity {
                 username = username.trim();
                 password = password.trim();
 
-                user.put("username", username);
-                user.put("password", password);
-
-                db.collection("users").add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(RegisterPage.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisterPage.this, LoginPage.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(RegisterPage.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                // kiểm tra username đã tồn tại chưa
+                String finalUsername = username;
+                String finalPassword = password;
+                db.collection("users")
+                    .whereEqualTo("username", username)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (queryDocumentSnapshots.isEmpty()) {
+                            // username chưa tồn tại
+                            // thêm user vào database
+                            user.put("username", finalUsername);
+                            user.put("password", finalPassword);
+                            db.collection("users")
+                                .add(user)
+                                .addOnSuccessListener(documentReference -> {
+                                    Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+                                    startActivity(intent);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                                });
+                        } else {
+                            // username đã tồn tại
+                            Toast.makeText(this, "Tên dăng nhập đã tồn tại", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
             }
         });
