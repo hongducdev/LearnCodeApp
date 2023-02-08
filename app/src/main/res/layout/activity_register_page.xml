@@ -65,7 +65,10 @@
                 android:layout_height="wrap_content"
                 android:hint="Nhập mật khẩu"
                 android:inputType="textPassword"
-                tools:ignore="HardcodedText" />
+                android:drawableEnd="@drawable/ic_eye_close"
+                android:paddingEnd="10dp"
+                android:longClickable="false"
+                tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -86,7 +89,10 @@
                 android:layout_height="wrap_content"
                 android:hint="Nhập lại mật khẩu"
                 android:inputType="textPassword"
-                tools:ignore="HardcodedText" />
+                android:drawableEnd="@drawable/ic_eye_close"
+                android:paddingEnd="10dp"
+                android:longClickable="false"
+                tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>
         <Button
             android:id="@+id/btnRegister"

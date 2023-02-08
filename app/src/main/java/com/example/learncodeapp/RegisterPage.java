@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Button;
@@ -19,6 +21,7 @@ public class RegisterPage extends AppCompatActivity {
     TextView tvLogin;
     EditText edtUsername, edtPassword, edtConfirmPassword;
     Button btnRegister;
+    boolean passwordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,31 @@ public class RegisterPage extends AppCompatActivity {
         tvLogin.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterPage.this, LoginPage.class);
             startActivity(intent);
+        });
+
+        // TODO: Toggle password visibility
+        edtPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edtPassword.getRight() - edtPassword.getCompoundDrawables()[Right].getBounds().width())) {
+                        if (passwordVisible) {
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_close, 0);
+                            edtPassword.setInputType(129);
+                            passwordVisible = false;
+                        } else {
+                            edtPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_open, 0);
+                            edtPassword.setInputType(145);
+                            passwordVisible = true;
+                        }
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         });
 
         // TODO: Add register logic
