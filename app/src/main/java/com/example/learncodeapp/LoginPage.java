@@ -88,7 +88,11 @@ public class LoginPage extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 if (task.getResult().size() > 0) {
                                     Toast.makeText(LoginPage.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("username", username);
+
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(LoginPage.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
