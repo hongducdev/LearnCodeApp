@@ -44,6 +44,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Nhập tên đăng nhập của bạn"
                 tools:ignore="HardcodedText"
+                android:background="@drawable/custom_edittext"
+                android:padding="10dp"
                 android:inputType="text" />
         </LinearLayout>
         <LinearLayout
@@ -66,7 +68,8 @@
                 android:hint="Nhập mật khẩu"
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_close"
-                android:paddingEnd="10dp"
+                android:background="@drawable/custom_edittext"
+                android:padding="10dp"
                 android:longClickable="false"
                 tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>
@@ -90,7 +93,8 @@
                 android:hint="Nhập lại mật khẩu"
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_close"
-                android:paddingEnd="10dp"
+                android:background="@drawable/custom_edittext"
+                android:padding="10dp"
                 android:longClickable="false"
                 tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>

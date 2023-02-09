@@ -39,10 +39,13 @@
                 android:textColor="@color/black"
                 tools:ignore="HardcodedText" />
             <EditText
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
                 android:id="@+id/edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập tên đăng nhập của bạn"
+                android:background="@drawable/custom_edittext"
                 tools:ignore="HardcodedText"
                 android:inputType="text" />
         </LinearLayout>
@@ -63,10 +66,12 @@
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
                 android:hint="Nhập mật khẩu"
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_close"
-                android:paddingEnd="10dp"
+                android:background="@drawable/custom_edittext"
                 android:longClickable="false"
                 tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>
