@@ -71,4 +71,77 @@
             tools:ignore="ContentDescription" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Khóa học"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="@drawable/custom_banner_home_page"
+            >
+            <ImageView
+                android:id="@+id/htmlImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/htmlcss"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_below="@+id/htmlImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HTML cơ bản"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:background="@drawable/custom_banner_home_page"
+            >
+            <ImageView
+                android:id="@+id/cssImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/htmlcssjs"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_below="@+id/cssImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CSS cơ bản"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </LinearLayout>
+
 </LinearLayout>
