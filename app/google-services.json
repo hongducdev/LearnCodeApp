@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "476272260968",
+    "project_id": "learncodeapp-c7c7c",
+    "storage_bucket": "learncodeapp-c7c7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476272260968:android:891f80006f27525d7548dd",
+        "android_client_info": {
+          "package_name": "com.example.learncodeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476272260968-4pmq7inr0frsgs8v0u9stkmthpq51hbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR_k9ju30Yu1zRORdJlwgIbgP5XNJEuIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476272260968-4pmq7inr0frsgs8v0u9stkmthpq51hbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
