@@ -69,6 +69,29 @@ public class RegisterPage extends AppCompatActivity {
                 return false;
             }
         });
+        edtConfirmPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edtConfirmPassword.getRight() - edtConfirmPassword.getCompoundDrawables()[Right].getBounds().width())) {
+                        if (passwordVisible) {
+                            edtConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_close, 0);
+                            edtConfirmPassword.setInputType(129);
+                            passwordVisible = false;
+                        } else {
+                            edtConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_open, 0);
+                            edtConfirmPassword.setInputType(145);
+                            passwordVisible = true;
+                        }
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });
 
         // TODO: Add register logic
         btnRegister.setOnClickListener(v -> {
