@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class HomePage extends AppCompatActivity {
 
     TextView tvNameHomePage; RelativeLayout course;
+    ImageView avatarUser;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -23,6 +24,7 @@ public class HomePage extends AppCompatActivity {
 
         tvNameHomePage = findViewById(R.id.tvNameHomePage);
         course = findViewById(R.id.courseName);
+        avatarUser = findViewById(R.id.avatarUser);
 
         Bundle bundle = getIntent().getExtras();
         String name = bundle.getString("username", "Bạn học");
@@ -33,5 +35,14 @@ public class HomePage extends AppCompatActivity {
                 Intent intent = new Intent(HomePage.this, Question.class);
                 startActivity(intent);
             });
+
+        avatarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent userPage = new Intent(HomePage.this, UserPage.class);
+
+                startActivity(userPage);
+            }
+        });
     }
 }
