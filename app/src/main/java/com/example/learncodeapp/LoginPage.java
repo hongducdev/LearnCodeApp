@@ -3,10 +3,12 @@ package com.example.learncodeapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
@@ -87,13 +89,20 @@ public class LoginPage extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 if (task.getResult().size() > 0) {
+                                    // TODO: Save user data to shared preferences
+
+                                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("username", username);
+                                    editor.putString("password", password);
+
+                                    editor.apply();
+
+                                    // Go to home page
                                     Toast.makeText(LoginPage.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginPage.this, HomePage.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("username", username);
-
-                                    intent.putExtras(bundle);
                                     startActivity(intent);
+
                                 } else {
                                     Toast.makeText(LoginPage.this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                                 }

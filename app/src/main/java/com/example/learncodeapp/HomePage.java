@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,8 +27,8 @@ public class HomePage extends AppCompatActivity {
         course = findViewById(R.id.courseName);
         avatarUser = findViewById(R.id.avatarUser);
 
-        Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("username", "Bạn học");
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        String name = sharedPreferences.getString("username", null);
 
         tvNameHomePage.setText(name);
 
