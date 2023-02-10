@@ -45,6 +45,7 @@ public class RegisterPage extends AppCompatActivity {
         });
 
         // TODO: Toggle password visibility
+        // FIXME: Sửa lỗi hiển thị
         edtPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

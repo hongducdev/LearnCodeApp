@@ -40,7 +40,8 @@
                 tools:ignore="HardcodedText" />
             <EditText
                 android:layout_marginTop="10dp"
-                android:padding="10dp"
+                android:paddingHorizontal="17.5dp"
+                android:paddingVertical="10dp"
                 android:id="@+id/edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,7 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:padding="10dp"
+                android:paddingHorizontal="17.5dp"
+                android:paddingVertical="10dp"
                 android:hint="Nhập mật khẩu"
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_close"

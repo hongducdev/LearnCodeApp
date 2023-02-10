@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         moveRegister = (Button) findViewById(R.id.moveRegister);
         moveLogin = (TextView) findViewById(R.id.moveLogin);
 

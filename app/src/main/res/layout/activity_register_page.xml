@@ -27,6 +27,7 @@
         android:orientation="vertical"
         >
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -39,13 +40,15 @@
                 android:textColor="@color/black"
                 tools:ignore="HardcodedText" />
             <EditText
+                android:layout_marginTop="10dp"
                 android:id="@+id/edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập tên đăng nhập của bạn"
                 tools:ignore="HardcodedText"
                 android:background="@drawable/custom_edittext"
-                android:padding="10dp"
+                android:paddingHorizontal="17.5dp"
+                android:paddingVertical="10dp"
                 android:inputType="text" />
         </LinearLayout>
         <LinearLayout
@@ -62,6 +65,7 @@
                 android:textColor="@color/black"
                 tools:ignore="HardcodedText" />
             <EditText
+                android:layout_marginTop="10dp"
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +73,8 @@
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_close"
                 android:background="@drawable/custom_edittext"
-                android:padding="10dp"
+                android:paddingHorizontal="17.5dp"
+                android:paddingVertical="10dp"
                 android:longClickable="false"
                 tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>
@@ -87,6 +92,7 @@
                 android:textColor="@color/black"
                 tools:ignore="HardcodedText" />
             <EditText
+                android:layout_marginTop="10dp"
                 android:id="@+id/edtConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +100,8 @@
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_close"
                 android:background="@drawable/custom_edittext"
-                android:padding="10dp"
+                android:paddingHorizontal="17.5dp"
+                android:paddingVertical="10dp"
                 android:longClickable="false"
                 tools:ignore="HardcodedText,RtlSymmetry" />
         </LinearLayout>

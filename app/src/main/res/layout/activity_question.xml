@@ -3,24 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="20dp"
     tools:context=".Question">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#41c375"
-        android:padding="10dp"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableLeft="@drawable/arrow_previous"
-            android:gravity="center|left"/>
 
-    </LinearLayout>
     <TextView
+        android:id="@+id/questionName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""/>
+        android:text="Câu 1: Liệu bỏ học có hối hận không?"
+        android:textColor="@color/primary"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"/>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_below="@+id/questionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Không hề hối hầndddddddddddddddddddddddddddddddddd"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Có hối hậnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đáp án 1"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đáp án 1"/>
+    </RadioGroup>
+    <Button
+        android:id="@+id/acceptBtn"
+        android:layout_below="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nộp bài"/>
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_below="@+id/acceptBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chuyển tiếp"
+        android:visibility="invisible"/>
 </RelativeLayout>
