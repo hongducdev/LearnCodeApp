@@ -2,6 +2,7 @@ package com.example.learncodeapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -12,6 +13,7 @@ public class HomePage extends AppCompatActivity {
 
     TextView tvNameHomePage;
     RelativeLayout course;
+    ImageView avatarUser;
     LinearLayout courses;
 
     @SuppressLint("MissingInflatedId")
@@ -22,15 +24,25 @@ public class HomePage extends AppCompatActivity {
 
         tvNameHomePage = findViewById(R.id.tvNameHomePage);
         course = findViewById(R.id.courseName);
+        avatarUser = findViewById(R.id.avatarUser);
 
-        Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("username", "Bạn học");
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        String name = sharedPreferences.getString("username", null);
 
         tvNameHomePage.setText(name);
 
         course.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this, Question.class);
-            startActivity(intent);
+                Intent intent = new Intent(HomePage.this, IntroductionCourse.class);
+                startActivity(intent);
+            });
+
+        avatarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent userPage = new Intent(HomePage.this, UserPage.class);
+
+                startActivity(userPage);
+            }
         });
     }
 }
