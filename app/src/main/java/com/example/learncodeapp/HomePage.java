@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
         tvNameHomePage.setText(name);
 
         course.setOnClickListener(v -> {
-                Intent intent = new Intent(HomePage.this, Question.class);
+                Intent intent = new Intent(HomePage.this, IntroductionCourse.class);
                 startActivity(intent);
             });
 
