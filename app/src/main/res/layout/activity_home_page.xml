@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".HomePage">
 
     <RelativeLayout
@@ -12,33 +12,36 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:ignore="UselessParent">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Xin chào,"
                 android:textSize="15sp"
                 tools:ignore="HardcodedText" />
+
             <TextView
                 android:id="@+id/tvNameHomePage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bạn học"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="30sp"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true">
+
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -48,22 +51,22 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/custom_banner_home_page"
-        >
+        android:orientation="horizontal"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:singleLine="false"
             android:text="Học lập trình cơ bản ngay trên máy điện thoại"
-            android:textSize="18sp"
             android:textColor="@color/black"
+            android:textSize="18sp"
             tools:ignore="HardcodedText" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="120dp"
@@ -74,73 +77,77 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Khóa học"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:text="Khóa học"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
+        android:id="@+id/courses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:weightSum="2">
+
         <RelativeLayout
             android:id="@+id/courseName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
             android:background="@drawable/custom_banner_home_page"
-            >
+            android:gravity="center"
+            android:padding="10dp">
+
             <ImageView
                 android:id="@+id/htmlImage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/htmlcss"
                 tools:ignore="ContentDescription" />
+
             <TextView
-                android:layout_below="@+id/htmlImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HTML cơ bản"
+                android:layout_below="@+id/htmlImage"
                 android:gravity="center"
+                android:text="HTML cơ bản"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginLeft="5dp"
-            android:padding="10dp"
+            android:layout_weight="1"
             android:background="@drawable/custom_banner_home_page"
-            >
+            android:gravity="center"
+            android:padding="10dp">
+
             <ImageView
                 android:id="@+id/cssImage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/htmlcssjs"
                 tools:ignore="ContentDescription" />
+
             <TextView
-                android:layout_below="@+id/cssImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CSS cơ bản"
+                android:layout_below="@+id/cssImage"
                 android:gravity="center"
+                android:text="CSS cơ bản"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
         </RelativeLayout>
     </LinearLayout>
