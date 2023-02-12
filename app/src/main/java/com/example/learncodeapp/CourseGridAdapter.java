@@ -1,6 +1,5 @@
 package com.example.learncodeapp;
 
-import static android.service.controls.ControlsProviderService.TAG;
 import static com.google.common.io.ByteStreams.copy;
 
 import android.content.Intent;
@@ -14,26 +13,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CourseGridAdapter extends BaseAdapter {
+//    private List<CourseModel> courseList;
     private List<String> courseList, courseImageList, courseIntroductList;
     ImageView courseImage;
 
@@ -73,9 +60,11 @@ public class CourseGridAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Splash.selected_course_index = position;
                 Intent intent = new Intent(parent.getContext(), IntroductionCourse.class);
                 intent.putExtra("course", courseList.get(position));
                 intent.putExtra("courseIntroduct", courseIntroductList.get(position));
+                intent.putExtra("course_id", position + 1);
                 parent.getContext().startActivity(intent);
             }
         });

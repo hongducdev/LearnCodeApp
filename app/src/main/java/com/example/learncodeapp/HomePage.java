@@ -1,11 +1,13 @@
 package com.example.learncodeapp;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -23,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import static com.example.learncodeapp.Splash.catList;
 
 public class HomePage extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class HomePage extends AppCompatActivity {
     RelativeLayout course;
     ImageView avatarUser, courseImage;
     GridView courses;
+    Dialog loadingDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,13 +46,20 @@ public class HomePage extends AppCompatActivity {
         avatarUser = findViewById(R.id.avatarUser);
         courseImage = findViewById(R.id.courseImage);
 
+        loadingDialog = new Dialog(HomePage.this);
+        loadingDialog.setContentView(R.layout.loading_progressbar);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         String name = sharedPreferences.getString("username", null);
 
         tvNameHomePage.setText(name);
-        List<String> courseList = new ArrayList<>();
+
         List<String> courseImageList = new ArrayList<>();
         List<String> courseIntroductList = new ArrayList<>();
 
@@ -56,20 +67,24 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        String courseName = (String) document.getData().get("name");
 
                         courseIntroductList.add((String) document.getData().get("introduction"));
                         courseImageList.add((String) document.getData().get("image_src"));
-                        courseList.add(courseName);
-                        CourseGridAdapter adapter = new CourseGridAdapter(courseList, courseImageList, courseIntroductList);
+//                        courseList.add(courseName);
+                        CourseGridAdapter adapter = new CourseGridAdapter(catList, courseImageList, courseIntroductList);
                         courses.setAdapter(adapter);
+
+                        loadingDialog.dismiss();
                     }
                 } else {
                     Toast.makeText(HomePage.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
 
         avatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
