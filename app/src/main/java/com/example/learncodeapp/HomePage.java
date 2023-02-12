@@ -1,21 +1,20 @@
 package com.example.learncodeapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomePage extends AppCompatActivity {
 
-    TextView tvNameHomePage; RelativeLayout course;
+    TextView tvNameHomePage;
+    RelativeLayout course;
     ImageView avatarUser;
+    LinearLayout courses;
 
     @SuppressLint("MissingInflatedId")
     @Override
