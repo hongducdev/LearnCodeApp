@@ -7,37 +7,66 @@
     android:padding="20dp"
     tools:context=".Question">
 
-    <LinearLayout
-        android:id="@+id/questionSize"
+    <RelativeLayout
+        android:id="@+id/sizeAndTimer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        >
-        <TextView
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/questionSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            >
+            <TextView
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="25sp"
+                android:textColor="@color/primary"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/totalSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:textSize="25sp"
-            android:textColor="@color/primary"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="/"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            >
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="@color/primary"
+                android:textSize="25sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="giây"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout
         android:id="@+id/questionLayout"
-        android:layout_below="@+id/questionSize"
+        android:layout_below="@+id/sizeAndTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

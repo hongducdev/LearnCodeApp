@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ import java.util.List;
 public class Question extends AppCompatActivity {
     TextView nameBar;
     LinearLayout questionLayout;
-    TextView questionName;
+    TextView questionName, timer, size, totalSize;
     RadioButton answer1, answer2, answer3, answer4;
 
     @SuppressLint("MissingInflatedId")
@@ -37,7 +38,10 @@ public class Question extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Initialize Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference questionRef = database.getReference("course-questions");
+
 
         // Change header
 //        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -65,26 +69,28 @@ public class Question extends AppCompatActivity {
         answer2 = findViewById(R.id.answer2);
         answer3 = findViewById(R.id.answer3);
         answer4 = findViewById(R.id.answer4);
+        timer = findViewById(R.id.timer);
 
-        db.collection("questions").document("html-basic")
-                .collection("questions")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("TAG", document.getId() + " => " + document.getData());
-                                questionName.setText(document.getString("question"));
-                                answer1.setText(document.getString("answer1"));
-                                answer2.setText(document.getString("answer2"));
-                                answer3.setText(document.getString("answer3"));
-                                answer4.setText(document.getString("answer4"));
-                            }
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
+        List<QuestionModel> questionList = new ArrayList<>();
+
+        questionRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot snapshot : task.getResult().getChildren()) {
+                        QuestionModel question = snapshot.getValue(QuestionModel.class);
+                        questionList.add(question);
                     }
-                });
+                }
+            }
+        });
     }
+
+        private void displayQuestion(QuestionModel question) {
+            questionName.setText(question.getQuestion());
+            answer1.setText(question.getAnswer1());
+            answer2.setText(question.getAnswer2());
+            answer3.setText(question.getAnswer3());
+            answer4.setText(question.getAnswer4());
+        }
 }
