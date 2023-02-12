@@ -63,13 +63,6 @@ public class Question extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-        
-    }
-
-
-}
-=======
         questionLayout = findViewById(R.id.questionLayout);
         questionName = findViewById(R.id.questionName);
         answer1 = findViewById(R.id.answer1);
@@ -101,4 +94,3 @@ public class Question extends AppCompatActivity {
             answer4.setText(question.getAnswer4());
         }
 }
->>>>>>> f8201fdb0ffe59ba30286e7d1f297e10fabab508
