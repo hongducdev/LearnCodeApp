@@ -3,55 +3,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_height="match_parent"
     android:padding="20dp"
     tools:context=".Question">
 
+    <RelativeLayout
+        android:id="@+id/sizeAndTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/questionSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            >
+            <TextView
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="25sp"
+                android:textColor="@color/primary"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/totalSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            >
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="@color/primary"
+                android:textSize="25sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="giây"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/questionName"
+
+    <LinearLayout
+        android:id="@+id/questionLayout"
+        android:layout_below="@+id/sizeAndTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Câu 1: Liệu bỏ học có hối hận không?"
-        android:textColor="@color/primary"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"/>
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_below="@+id/questionName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp">
-        <RadioButton
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/questionName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Không hề hối hầndddddddddddddddddddddddddddddddddd"/>
-        <RadioButton
-            android:layout_width="wrap_content"
+            android:text="Câu 1: Liệu bỏ học có hối hận không?"
+            android:textColor="@color/primary"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_below="@+id/questionName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Có hối hậnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đáp án 1"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đáp án 1"/>
-    </RadioGroup>
+            android:layout_marginBottom="15dp">
+            <RadioButton
+                android:id="@+id/answer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary"
+                android:text="Không hề hối hầndddddddddddddddddddddddddddddddddd"/>
+            <RadioButton
+                android:id="@+id/answer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary"
+                android:text="Có hối hậnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"/>
+            <RadioButton
+                android:id="@+id/answer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary"
+                android:text="Đáp án 1"/>
+            <RadioButton
+                android:id="@+id/answer4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary"
+                android:text="Đáp án 1"/>
+        </RadioGroup>
+    </LinearLayout>
     <Button
         android:id="@+id/acceptBtn"
-        android:layout_below="@+id/radioGroup"
+        android:layout_below="@+id/questionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nộp bài"/>
-    <Button
-        android:id="@+id/nextBtn"
-        android:layout_below="@+id/acceptBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chuyển tiếp"
-        android:visibility="invisible"/>
 </RelativeLayout>
