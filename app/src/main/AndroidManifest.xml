@@ -14,13 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnCodeApp"
         tools:targetApi="31">
+
         <activity
             android:name=".IntroductionCourse"
             android:exported="false">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".UserPage"
             android:exported="false">

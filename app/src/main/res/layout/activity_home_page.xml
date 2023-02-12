@@ -86,71 +86,18 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <LinearLayout
+    <GridView
         android:id="@+id/courses"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:columnWidth="150dp"
+        android:clipToPadding="false"
+        android:numColumns="2">
 
-        <RelativeLayout
-            android:id="@+id/courseName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_banner_home_page"
-            android:gravity="center"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/htmlImage"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/htmlcss"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/htmlImage"
-                android:gravity="center"
-                android:text="HTML cơ bản"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_banner_home_page"
-            android:gravity="center"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/cssImage"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/htmlcssjs"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cssImage"
-                android:gravity="center"
-                android:text="CSS cơ bản"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-        </RelativeLayout>
-    </LinearLayout>
+    </GridView>
 
 </LinearLayout>

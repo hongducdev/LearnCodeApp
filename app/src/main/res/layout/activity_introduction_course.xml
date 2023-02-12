@@ -12,6 +12,7 @@
         android:layout_height="250dp"
         android:src="@drawable/htmlcss" />
     <TextView
+        android:id="@+id/titleIntroduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Giới thiệu về HTML"

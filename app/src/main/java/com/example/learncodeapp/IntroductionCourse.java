@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,33 +22,33 @@ public class IntroductionCourse extends AppCompatActivity {
 
     TextView introductionCourse;
     Button btnStart;
+    TextView titleIntroduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction_course);
 
+        titleIntroduct = findViewById(R.id.titleIntroduct);
         introductionCourse = findViewById(R.id.introductionCourse);
         btnStart = findViewById(R.id.btnStart);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Change header
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar_question);
+        View view =getSupportActionBar().getCustomView();
+        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
 
-        db.collection("courses")
-            .whereEqualTo("name", "HTML cơ bản")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String introduction = document.getString("introduction");
-                            introductionCourse.setText(introduction);
-                        }
-                    } else {
-                        Toast.makeText(IntroductionCourse.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        titleIntroduct.setText("Giới thiệu về " + getIntent().getStringExtra("course"));
+        introductionCourse.setText(getIntent().getStringExtra("courseIntroduct"));
 
         btnStart.setOnClickListener(v -> {
             Intent intent = new Intent(IntroductionCourse.this, Question.class);
