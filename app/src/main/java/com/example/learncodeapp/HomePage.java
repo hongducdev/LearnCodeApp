@@ -108,6 +108,23 @@ public class HomePage extends AppCompatActivity {
                             int scoreRank = Integer.parseInt(document.getData().get("score").toString());
 
                             rankList.add(new RankModel(usernameRank, scoreRank));
+
+//                            sắp xếp lại người chơi theo điểm
+                            for (int i = 0; i < rankList.size(); i++) {
+                                for (int j = i + 1; j < rankList.size(); j++) {
+                                    if (rankList.get(i).getScore() < rankList.get(j).getScore()) {
+                                        RankModel temp = rankList.get(i);
+                                        rankList.set(i, rankList.get(j));
+                                        rankList.set(j, temp);
+                                    }
+                                }
+                            }
+
+//                            hiển thị 5 người chơi có điểm cao nhất
+                            if (rankList.size() > 5) {
+                                rankList.remove(5);
+                            }
+
                             RankAdapter adapter = new RankAdapter(HomePage.this, rankList);
                             lvRank.setAdapter(adapter);
 

@@ -1,6 +1,7 @@
 package com.example.learncodeapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,21 @@ public class RankAdapter extends BaseAdapter {
         TextView tvStatus = convertView.findViewById(R.id.tvStatus);
         TextView tvNameUser = convertView.findViewById(R.id.tvNameUser);
         TextView tvScoreUser = convertView.findViewById(R.id.tvScoreUser);
+
+        tvNameUser.setText(rankList.get(position).getName());
+        tvScoreUser.setText(String.valueOf(rankList.get(position).getScore()));
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("username", null);
+
+        if (rankList.get(position).getName().equals(name)) {
+            tvNameUser.setText("Bạn");
+            tvStatus.setTextColor(context.getResources().getColor(R.color.primary));
+            tvScoreUser.setTextColor(context.getResources().getColor(R.color.primary));
+            tvNameUser.setTextColor(context.getResources().getColor(R.color.primary));
+        } else {
+            tvStatus.setText(String.valueOf(position + 1));
+        }
 
         return convertView;
     }
