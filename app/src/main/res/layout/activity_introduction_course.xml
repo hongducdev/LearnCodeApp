@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical">
-
-    <ImageView
+    android:layout_height="wrap_content"
+    android:fillViewport="false">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/htmlcss" />
-    <TextView
-        android:id="@+id/titleIntroduct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Giới thiệu về HTML"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColor="@color/black"
-        tools:ignore="HardcodedText" />
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical"
+        >
 
-    <TextView
-        android:id="@+id/introductionCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="HTML cơ bản"
-        />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/htmlcss" />
+        <TextView
+            android:id="@+id/titleIntroduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giới thiệu về HTML"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bắt đầu"
-        tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/introductionCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="HTML cơ bản"
+            />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bắt đầu"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+</ScrollView>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +33,10 @@ public class HomePage extends AppCompatActivity {
     TextView tvNameHomePage;
     RelativeLayout course;
     ImageView avatarUser, courseImage;
+    ListView lvRank;
     GridView courses;
     Dialog loadingDialog;
+    ArrayList<RankModel> rankList = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -93,6 +96,27 @@ public class HomePage extends AppCompatActivity {
                 startActivity(userPage);
             }
         });
+
+        lvRank = findViewById(R.id.lvRank);
+        db.collection("users").get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String usernameRank = (String) document.getData().get("username");
+                            int scoreRank = Integer.parseInt(document.getData().get("score").toString());
+
+                            rankList.add(new RankModel(usernameRank, scoreRank));
+                            RankAdapter adapter = new RankAdapter(HomePage.this, rankList);
+                            lvRank.setAdapter(adapter);
+
+                        }
+                    } else {
+                        Toast.makeText(HomePage.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
     }
 }
 
