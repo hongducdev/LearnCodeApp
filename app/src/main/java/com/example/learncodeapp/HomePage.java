@@ -79,11 +79,13 @@ public class HomePage extends AppCompatActivity {
                         CourseGridAdapter adapter = new CourseGridAdapter(catList, courseImageList, courseIntroductList);
                         courses.setAdapter(adapter);
 
-                        loadingDialog.dismiss();
+
                     }
+
                 } else {
                     Toast.makeText(HomePage.this, "Error", Toast.LENGTH_SHORT).show();
                 }
+                loadingDialog.dismiss();
             }
         });
 

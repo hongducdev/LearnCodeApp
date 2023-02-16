@@ -26,7 +26,7 @@ public class Splash extends AppCompatActivity {
     private TextView appName;
 
 //    public static List<CourseModel> catList = new ArrayList<>();
-    public static List<String> catList = new ArrayList<>();
+    public static List<CourseModel> catList = new ArrayList<>();
     public static int selected_course_index = 0;
     private FirebaseFirestore firestore;
 
@@ -72,11 +72,10 @@ public class Splash extends AppCompatActivity {
 
                                 for (int i = 1; i <= doc.getData().size(); i++) {
 
-                                    String courseID = doc.getString("course" + String.valueOf(i));
-//                                    String courseName = doc.getString("course" + String.valueOf(i) + "_name");
+                                    String courseID = doc.getString("course" + String.valueOf(i) + "_id");
+                                    String courseName = doc.getString("course" + String.valueOf(i) + "_name");
 
-//                                    catList.add(new CourseModel(courseID, courseName));
-                                    catList.add(courseID);
+                                    catList.add(new CourseModel(courseID, courseName));
 
                                 }
                                 Intent intent = new Intent(Splash.this, MainActivity.class);

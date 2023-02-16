@@ -1,10 +1,12 @@
 package com.example.learncodeapp;
 
 import static com.example.learncodeapp.Splash.catList;
+import static com.example.learncodeapp.Splash.selected_course_index;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import static com.example.learncodeapp.Splash.catList;
 
 public class IntroductionCourse extends AppCompatActivity {
 
@@ -30,8 +34,10 @@ public class IntroductionCourse extends AppCompatActivity {
     Button btnStart;
     TextView titleIntroduct;
     Dialog loadingDialog;
+    ImageView courseImage;
     int course_id;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +46,12 @@ public class IntroductionCourse extends AppCompatActivity {
         titleIntroduct = findViewById(R.id.titleIntroduct);
         introductionCourse = findViewById(R.id.introductionCourse);
         btnStart = findViewById(R.id.btnStart);
+        courseImage = findViewById(R.id.courseImage);
 
         // Change header
 //        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle(catList.get(selected_course_index).getName());
         getSupportActionBar().setCustomView(R.layout.custom_action_bar_question);
         View view =getSupportActionBar().getCustomView();
         ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
@@ -63,7 +71,7 @@ public class IntroductionCourse extends AppCompatActivity {
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         loadingDialog.show();
 
-
+//        courseImage);
         titleIntroduct.setText("Giới thiệu về " + getIntent().getStringExtra("course"));
         introductionCourse.setText(getIntent().getStringExtra("courseIntroduct"));
         course_id = getIntent().getIntExtra("course_id", 1);

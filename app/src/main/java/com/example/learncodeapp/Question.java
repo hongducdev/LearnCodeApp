@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -88,6 +89,13 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        loadingDialog = new Dialog(Question.this);
+        loadingDialog.setContentView(R.layout.loading_progressbar);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+
         course_id = getIntent().getIntExtra("course_id", 1);
 
         getQuestionList();
@@ -100,42 +108,29 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
 
         questionList.clear();
 
-        firestore.collection("courses").document("course" + String.valueOf(course_id))
-                .collection("questions").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
+        firestore.collection("courses").document("course" + String.valueOf(course_id)).collection("questions").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot doc : task.getResult()) {
-                                questionList.add(new QuestionModel(
-                                        doc.getString("question"),
-                                        doc.getString("A"),
-                                        doc.getString("B"),
-                                        doc.getString("C"),
-                                        doc.getString("D"),
-                                        Integer.valueOf(doc.getString("answer"))
-                                ));
-
-                                Toast.makeText(Question.this, doc.toString(), Toast.LENGTH_LONG).show();
-                            }
-                        } else {
-                            Toast.makeText(Question.this, "Error", Toast.LENGTH_SHORT).show();
-                        }
-
-                        setQuestion();
-
-//                        loadingDialog.dismiss();
-
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        questionList.add(new QuestionModel(doc.getString("question"), doc.getString("A"), doc.getString("B"), doc.getString("C"), doc.getString("D"), Integer.valueOf(doc.getString("answer"))));
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Question.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        loadingDialog.dismiss();
-                    }
-                });
+                } else {
+                    Toast.makeText(Question.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+
+
+                setQuestion();
+                loadingDialog.dismiss();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                loadingDialog.dismiss();
+            }
+        });
     }
 
     private void setQuestion() {
@@ -200,13 +195,13 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
 
         if (selectedOption == questionList.get(quesNum).getCorrectAnswer()) {
             //Right Answer
-            ((RadioButton) view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            ((RadioButton) view).setButtonTintList(ColorStateList.valueOf(Color.GREEN));
             ((RadioButton) view).setTextColor(ColorStateList.valueOf(Color.GREEN));
             score++;
 
         } else {
             //Wrong Answer
-            ((RadioButton) view).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            ((RadioButton) view).setButtonTintList(ColorStateList.valueOf(Color.RED));
             ((RadioButton) view).setTextColor(ColorStateList.valueOf(Color.RED));
 
             switch (questionList.get(quesNum).getCorrectAnswer()) {
@@ -261,7 +256,9 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         } else {
             // Go to Score Activity
             Intent intent = new Intent(Question.this, Score.class);
-            intent.putExtra("SCORE", String.valueOf(score) + "/" + String.valueOf(questionList.size()));
+            intent.putExtra("NUM_CORRECT", String.valueOf(score) + "/" + String.valueOf(questionList.size()));
+            int newScore = (int) ((score * 100) / questionList.size());
+            intent.putExtra("SCORE", String.valueOf(newScore));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             //QuestionActivity.this.finish();
@@ -273,57 +270,57 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
 
     private void playAnim(final View view, final int value, final int viewNum) {
 
-        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500)
-                .setStartDelay(100).setInterpolator(new DecelerateInterpolator())
-                .setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(100).setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (value == 0) {
+                    switch (viewNum) {
+                        case 0:
+                            ((TextView) view).setText(questionList.get(quesNum).getQuestion());
+                            break;
+                        case 1:
+                            ((RadioButton) view).setText(questionList.get(quesNum).getOption1());
+                            break;
+                        case 2:
+                            ((RadioButton) view).setText(questionList.get(quesNum).getOption2());
+                            break;
+                        case 3:
+                            ((RadioButton) view).setText(questionList.get(quesNum).getOption3());
+                            break;
+                        case 4:
+                            ((RadioButton) view).setText(questionList.get(quesNum).getOption4());
+                            break;
 
                     }
 
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (value == 0) {
-                            switch (viewNum) {
-                                case 0:
-                                    ((TextView) view).setText(questionList.get(quesNum).getQuestion());
-                                    break;
-                                case 1:
-                                    ((RadioButton) view).setText(questionList.get(quesNum).getOption1());
-                                    break;
-                                case 2:
-                                    ((RadioButton) view).setText(questionList.get(quesNum).getOption2());
-                                    break;
-                                case 3:
-                                    ((RadioButton) view).setText(questionList.get(quesNum).getOption3());
-                                    break;
-                                case 4:
-                                    ((RadioButton) view).setText(questionList.get(quesNum).getOption4());
-                                    break;
 
-                            }
-
-
-                            if (viewNum != 0)
-                                ((RadioButton) view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E99C03")));
-
-
-                            playAnim(view, 1, viewNum);
-
-                        }
-
+                    if (viewNum != 0) {
+                        ((RadioButton) view).setButtonTintList(ColorStateList.valueOf(Color.parseColor("#41c375")));
+                        ((RadioButton) view).setTextColor(ColorStateList.valueOf(Color.BLACK));
+                        ((RadioButton) view).setChecked(false);
                     }
 
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
+                    playAnim(view, 1, viewNum);
 
-                    }
+                }
 
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
+            }
 
-                    }
-                });
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
     }
 
