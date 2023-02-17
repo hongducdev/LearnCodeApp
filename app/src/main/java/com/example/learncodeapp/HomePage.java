@@ -107,9 +107,11 @@ public class HomePage extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String usernameRank = (String) document.getData().get("username");
-                            int scoreRank = Integer.parseInt(document.getData().get("score").toString());
-
-                            rankList.add(new RankModel(usernameRank, scoreRank));
+                            String scoreRank = (String) document.getData().get("score");
+//                            conver score to int
+                            assert scoreRank != null;
+                            int scoreRankInt = Integer.parseInt(scoreRank);
+                            rankList.add(new RankModel(usernameRank, scoreRankInt));
 
 //                            sắp xếp lại người chơi theo điểm
                             for (int i = 0; i < rankList.size(); i++) {
