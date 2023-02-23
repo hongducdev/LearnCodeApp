@@ -128,7 +128,7 @@ public class RegisterPage extends AppCompatActivity {
                             // thêm user vào database
                             user.put("username", finalUsername);
                             user.put("password", finalPassword);
-                            user.put("score", 0);
+                            user.put("score", "0");
                             db.collection("users")
                                 .add(user)
                                 .addOnSuccessListener(documentReference -> {
