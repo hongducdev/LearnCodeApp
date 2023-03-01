@@ -174,15 +174,31 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.opt1:
                 selectedOption = 1;
+                opt1.setEnabled(false);
+                opt2.setEnabled(false);
+                opt3.setEnabled(false);
+                opt4.setEnabled(false);
                 break;
             case R.id.opt2:
                 selectedOption = 2;
+                opt2.setEnabled(false);
+                opt3.setEnabled(false);
+                opt1.setEnabled(false);
+                opt4.setEnabled(false);
                 break;
             case R.id.opt3:
                 selectedOption = 3;
+                opt3.setEnabled(false);
+                opt2.setEnabled(false);
+                opt1.setEnabled(false);
+                opt4.setEnabled(false);
                 break;
             case R.id.opt4:
                 selectedOption = 4;
+                opt4.setEnabled(false);
+                opt2.setEnabled(false);
+                opt1.setEnabled(false);
+                opt3.setEnabled(false);
                 break;
             default:
         }
@@ -257,7 +273,7 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
             // Go to Score Activity
             Intent intent = new Intent(Question.this, Score.class);
             intent.putExtra("NUM_CORRECT", String.valueOf(score) + "/" + String.valueOf(questionList.size()));
-            int newScore = (int) ((score * 100) / questionList.size());
+            int newScore = (int) (score * 10);
             intent.putExtra("SCORE", String.valueOf(newScore));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -303,6 +319,10 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
                         ((RadioButton) view).setButtonTintList(ColorStateList.valueOf(Color.parseColor("#41c375")));
                         ((RadioButton) view).setTextColor(ColorStateList.valueOf(Color.BLACK));
                         ((RadioButton) view).setChecked(false);
+                        opt2.setEnabled(true);
+                        opt3.setEnabled(true);
+                        opt4.setEnabled(true);
+                        opt1.setEnabled(true);
                     }
 
                     playAnim(view, 1, viewNum);
