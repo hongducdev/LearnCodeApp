@@ -114,7 +114,7 @@ public class HomePage extends AppCompatActivity {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String usernameRank = (String) document.getData().get("username");
+                            String usernameRank = (String) document.getData().get("name");
                             String scoreRank = (String) document.getData().get("score");
 //                            conver score to int
                             assert scoreRank != null;
