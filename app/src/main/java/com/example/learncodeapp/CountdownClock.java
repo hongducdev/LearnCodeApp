@@ -2,10 +2,12 @@ package com.example.learncodeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CountdownClock extends AppCompatActivity {
 
@@ -55,6 +57,10 @@ public class CountdownClock extends AppCompatActivity {
                 public void onFinish() {
                     tvCountdownMinute.setText("00");
                     tvCountdownSecond.setText("00");
+                    Toast.makeText(CountdownClock.this, "Hết thời gian!", Toast.LENGTH_SHORT).show();
+                    MediaPlayer mediaPlayer = MediaPlayer.create(CountdownClock.this, R.raw.alarm);
+                    mediaPlayer.start();
+
                 }
             }.start();
         });

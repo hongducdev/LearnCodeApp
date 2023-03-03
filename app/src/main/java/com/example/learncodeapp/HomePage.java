@@ -168,6 +168,15 @@ public class HomePage extends AppCompatActivity {
             Intent dongHoDemNguoc = new Intent(HomePage.this, CountdownClock.class);
             startActivity(dongHoDemNguoc);
         });
+
+        layout3.setOnClickListener(v -> {
+            Intent layout3 = new Intent(HomePage.this, contact_page.class);
+            startActivity(layout3);
+        });
+
+        layout4.setOnClickListener(v -> {
+            Toast.makeText(HomePage.this, "Chức năng đang được phát triển", Toast.LENGTH_SHORT).show();
+        });
     }
 }
 

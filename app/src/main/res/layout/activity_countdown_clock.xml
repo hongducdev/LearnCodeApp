@@ -76,14 +76,14 @@
             android:id="@+id/btn45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="45phút" />
+            android:text="45 phút" />
 
         <Button
             android:id="@+id/btn60"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="60phút" />
+            android:text="60 phút" />
 
     </LinearLayout>
 
