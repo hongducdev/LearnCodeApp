@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -30,11 +31,13 @@ public class UserPage extends AppCompatActivity {
         btnChangeName = findViewById(R.id.btnChangeName);
         edtChangeName = findViewById(R.id.edtChangeName);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("users")
-                .whereEqualTo("username", getIntent().getStringExtra("username"))
+//        lấy dữ liệu từ firebase từ username trong user
+        db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -58,9 +61,21 @@ public class UserPage extends AppCompatActivity {
                 finish();
             }
         });
+//        đổi tên
+        btnChangeName.setOnClickListener(v -> {
+            db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                db.collection("users").document(document.getId()).update("name", edtChangeName.getText().toString());
+                                Toast.makeText(this, "Thay đổi tên thành công", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        });
 
         btnLogout.setOnClickListener(v -> {
-            SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();

@@ -64,9 +64,17 @@ public class HomePage extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-        String name = sharedPreferences.getString("username", null);
 
-        tvNameHomePage.setText(name);
+        db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String name = document.getString("name");
+                            tvNameHomePage.setText(name);
+                        }
+                    }
+                });
 
         List<String> courseImageList = new ArrayList<>();
         List<String> courseIntroductList = new ArrayList<>();
@@ -111,7 +119,7 @@ public class HomePage extends AppCompatActivity {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String usernameRank = (String) document.getData().get("username");
+                            String usernameRank = (String) document.getData().get("name");
                             String scoreRank = (String) document.getData().get("score");
 //                            conver score to int
                             assert scoreRank != null;
@@ -132,6 +140,13 @@ public class HomePage extends AppCompatActivity {
 //                            hiển thị 5 người chơi có điểm cao nhất
                             if (rankList.size() > 5) {
                                 rankList.remove(5);
+                            }
+
+//                            hiển thị người dùng có số điểm lớn hơn 0
+                            for (int i = 0; i < rankList.size(); i++) {
+                                if (rankList.get(i).getScore() == 0) {
+                                    rankList.remove(i);
+                                }
                             }
 
                             RankAdapter adapter = new RankAdapter(HomePage.this, rankList);
