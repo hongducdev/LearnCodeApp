@@ -59,9 +59,17 @@ public class HomePage extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-        String name = sharedPreferences.getString("username", null);
 
-        tvNameHomePage.setText(name);
+        db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String name = document.getString("name");
+                            tvNameHomePage.setText(name);
+                        }
+                    }
+                });
 
         List<String> courseImageList = new ArrayList<>();
         List<String> courseIntroductList = new ArrayList<>();
