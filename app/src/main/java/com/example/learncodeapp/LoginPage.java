@@ -95,6 +95,7 @@ public class LoginPage extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString("username", username);
                                     editor.putString("password", password);
+                                    editor.putString("name", task.getResult().getDocuments().get(0).getString("name"));
 
                                     editor.apply();
 

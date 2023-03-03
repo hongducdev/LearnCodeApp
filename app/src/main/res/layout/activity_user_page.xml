@@ -20,17 +20,16 @@
             android:layout_gravity="center"
             />
         <TextView
-            android:id="@+id/tvUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username"
+            android:text="Nhập tên của bạn"
             android:textSize="20sp"
             tools:ignore="HardcodedText,MissingConstraints" />
         <EditText
             android:layout_marginTop="10dp"
             android:paddingHorizontal="17.5dp"
             android:paddingVertical="10dp"
-            android:id="@+id/edtUsername"
+            android:id="@+id/edtChangeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập tên đăng nhập của bạn"
