@@ -137,6 +137,13 @@ public class HomePage extends AppCompatActivity {
                                 rankList.remove(5);
                             }
 
+//                            hiển thị người dùng có số điểm lớn hơn 0
+                            for (int i = 0; i < rankList.size(); i++) {
+                                if (rankList.get(i).getScore() == 0) {
+                                    rankList.remove(i);
+                                }
+                            }
+
                             RankAdapter adapter = new RankAdapter(HomePage.this, rankList);
                             lvRank.setAdapter(adapter);
 
