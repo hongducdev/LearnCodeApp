@@ -1,9 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".KnowledgeShare">
+    android:layout_height="wrap_content"
+    android:fillViewport="false">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".KnowledgeShare">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kinh nghiệm 'xương máu' tự học lập trình của mình"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Tác giả: Nguyễn Hồng Đức"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Ngày đăng: 03/03/2023"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/htmlcssjs" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Xin chào, mình là Nguyễn Hồng Đức. Mình là sinh viên năm 3 trường Đại học Công nghệ thông tin và truyền thông Thái Nguyên. Mình đang học ngành Công nghệ thông tin. Mình có một số kinh nghiệm học lập trình mà mình muốn chia sẻ với các bạn. Mình hy vọng sẽ giúp ích được cho các bạn."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="1. Tự học lập trình"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Là một người không có nhiều kiến thức về lập trình, mình cũng không có nhiều thời gian để học lập trình. Mình đã tự học lập trình qua các nguồn trên mạng như: Youtube, Udemy, Coursera, Codecademy, Khan Academy, FreeCodeCamp, CodeSchool, Code.org, Edx, Udacity, W3Schools, CodeCombat, CodeHS, Code Avengers, Code Monkey, Code Avengers, Code Monkey,..."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="2. Tự học lập trình qua các nguồn trên mạng"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Khi vào năm học đầu tiên, mình được tiếp xúc với ngôn ngữ lập trình C và C++. Khi xác định nó là nền tảng mà mình phải nắm chắc thì mình đã tìm hiểu và học tập trên Codelearn.io (là nền tảng website học lập trình có khá nhiều khóa học với nhiều ngôn ngữ lập trình khác nhau thông qua giải bài tập trực tiếp). Nhờ đó mà mình đã vượt qua môn Nhập môn lập trình với tích A. Và đó cũng là nền tảng để mình học những ngôn ngữ lập trình bậc cao."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Thông qua niềm yêu thích đồi với giao diện hay thiết kế đồ họa thì đã tìm hiểu về Front-end (lập trình web). Sau đó, mình đã tìm hiểu về Back-end (lập trình máy chủ). Mình đã tìm hiểu về các ngôn ngữ lập trình như: HTML, CSS, Javascript. Hiện tại ở Việt Nam cũng có nhiều khóa học từ miễn phí hay trả phí. Khóa học Front-end mà đầu tiên mình học là khóa học miễn phí trên F8 (fullstack.edu.vn). Tiếp theo mình có học qua Youtube và được biết đến channel Evondev. Qua đó là mình biết đến được những khóa học trả phí nhưng mà giá trị của nó hơn cả số tiền mà mình phải trả. Qua khóa học mà mình cũng học được UI/UX thông qua các giao diện hay sản phẩm mà mình làm."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Hiện tại mình đang học ReactJS là một trong framework của JavaScript nổi tiếng của Facebook. Cũng như là nhiều framework CSS như: SASS, TailwindCSS,... Kiến thức trên mình học qua các kênh Youtube khác nhau trên thế giới và Việt Nam. Các bạn nên dành thời gian từ 2-3 tiếng mỗi ngày trong việc lập trình (có thể áp dụng quy tắc học từ 25 phút - 60 phút rồi nghỉ 5-10 phút để tăng sự tập trung và đảm bảo sức khỏe). Đặc biệt là trên app học lập trình này mình đã tạo ra một chức năng có thể tính thời gian theo từng khoảng như vậy để các bạn có thể theo dõi được."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="3. Lời kết"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Mình rất mong rằng bài viết này sẽ giúp ích được cho các bạn đang học lập trình. Nếu có gì sai sót mong các bạn thông cảm và góp ý cho mình. Cảm ơn các bạn đã đọc bài viết này."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</ScrollView>
