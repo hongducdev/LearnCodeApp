@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ import static com.example.learncodeapp.Splash.catList;
 public class HomePage extends AppCompatActivity {
 
     TextView tvNameHomePage;
-    RelativeLayout course;
+    LinearLayout chiaSeKienThuc, dongHoDemNguoc, layout3, layout4;
     ImageView avatarUser, courseImage;
     ListView lvRank;
     GridView courses;
@@ -48,6 +49,10 @@ public class HomePage extends AppCompatActivity {
         courses = findViewById(R.id.courses);
         avatarUser = findViewById(R.id.avatarUser);
         courseImage = findViewById(R.id.courseImage);
+        chiaSeKienThuc = findViewById(R.id.chiaSeKienThuc);
+        dongHoDemNguoc = findViewById(R.id.dongHoDemNguoc);
+        layout3 = findViewById(R.id.layout3);
+        layout4 = findViewById(R.id.layout4);
 
         loadingDialog = new Dialog(HomePage.this);
         loadingDialog.setContentView(R.layout.loading_progressbar);
@@ -138,6 +143,16 @@ public class HomePage extends AppCompatActivity {
                     }
                 }
             });
+
+        chiaSeKienThuc.setOnClickListener(v -> {
+            Intent chiaSeKienThuc = new Intent(HomePage.this, KnowledgeShare.class);
+            startActivity(chiaSeKienThuc);
+        });
+
+        dongHoDemNguoc.setOnClickListener(v -> {
+            Intent dongHoDemNguoc = new Intent(HomePage.this, CountdownClock.class);
+            startActivity(dongHoDemNguoc);
+        });
     }
 }
 

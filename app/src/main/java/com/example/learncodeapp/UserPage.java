@@ -1,14 +1,20 @@
 package com.example.learncodeapp;
 
+import static com.example.learncodeapp.Splash.catList;
+import static com.example.learncodeapp.Splash.selected_course_index;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class UserPage extends AppCompatActivity {
 
@@ -38,6 +44,20 @@ public class UserPage extends AppCompatActivity {
                     }
                 });
 
+        // Change header
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle("Thông tin cá nhân");
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar_question);
+        View view =getSupportActionBar().getCustomView();
+        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnLogout.setOnClickListener(v -> {
             SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
