@@ -51,6 +51,11 @@ public class CountdownClock extends AppCompatActivity {
                     int seconds = (int) (millisUntilFinished / 1000) % 60;
                     tvCountdownMinute.setText(String.format("%02d", minutes));
                     tvCountdownSecond.setText(String.format("%02d", seconds));
+
+//                    disable button
+                    btn25.setEnabled(false);
+                    btn45.setEnabled(false);
+                    btn60.setEnabled(false);
                 }
 
                 @Override
@@ -60,6 +65,9 @@ public class CountdownClock extends AppCompatActivity {
                     Toast.makeText(CountdownClock.this, "Hết thời gian!", Toast.LENGTH_SHORT).show();
                     MediaPlayer mediaPlayer = MediaPlayer.create(CountdownClock.this, R.raw.alarm);
                     mediaPlayer.start();
+                    btn25.setEnabled(true);
+                    btn45.setEnabled(true);
+                    btn60.setEnabled(true);
 
                 }
             }.start();
@@ -69,6 +77,9 @@ public class CountdownClock extends AppCompatActivity {
             Timer.cancel();
             tvCountdownMinute.setText("25");
             tvCountdownSecond.setText("00");
+            btn25.setEnabled(true);
+            btn45.setEnabled(true);
+            btn60.setEnabled(true);
         });
 
     }
