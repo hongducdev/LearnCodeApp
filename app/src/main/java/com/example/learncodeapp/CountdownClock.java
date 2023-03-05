@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.BreakIterator;
 
 public class CountdownClock extends AppCompatActivity {
 
     TextView tvCountdownMinute, tvCountdownSecond;
     Button btnStart, btnReset, btn25, btn45, btn60;
-    CountDownTimer Timer;
+    CountDownTimer Timer, timer;
+    int milliLeft,min, sec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,33 +48,16 @@ public class CountdownClock extends AppCompatActivity {
         });
 
         btnStart.setOnClickListener(v -> {
-            Timer = new CountDownTimer(Integer.parseInt(tvCountdownMinute.getText().toString()) * 60 * 1000, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    int minutes = (int) (millisUntilFinished / 1000) / 60;
-                    int seconds = (int) (millisUntilFinished / 1000) % 60;
-                    tvCountdownMinute.setText(String.format("%02d", minutes));
-                    tvCountdownSecond.setText(String.format("%02d", seconds));
-
-//                    disable button
-                    btn25.setEnabled(false);
-                    btn45.setEnabled(false);
-                    btn60.setEnabled(false);
-                }
-
-                @Override
-                public void onFinish() {
-                    tvCountdownMinute.setText("00");
-                    tvCountdownSecond.setText("00");
-                    Toast.makeText(CountdownClock.this, "Hết thời gian!", Toast.LENGTH_SHORT).show();
-                    MediaPlayer mediaPlayer = MediaPlayer.create(CountdownClock.this, R.raw.alarm);
-                    mediaPlayer.start();
-                    btn25.setEnabled(true);
-                    btn45.setEnabled(true);
-                    btn60.setEnabled(true);
-
-                }
-            }.start();
+            if (btnStart.getText().toString().equals("Start")) {
+                btnStart.setText("Pause");
+                timerStart(25 * 60 * 1000);
+            } else if (btnStart.getText().toString().equals("Pause")) {
+                btnStart.setText("Resume");
+                timerPause();
+            } else if (btnStart.getText().toString().equals("Resume")) {
+                btnStart.setText("Pause");
+                timerResume();
+            }
         });
 
         btnReset.setOnClickListener(v -> {
@@ -82,5 +69,48 @@ public class CountdownClock extends AppCompatActivity {
             btn60.setEnabled(true);
         });
 
+    }
+
+    public void timerStart(long timeLengthMilli) {
+        timer = new CountDownTimer(timeLengthMilli, 1000) {
+
+
+            @Override
+            public void onTick(long milliTillFinish) {
+                milliLeft = (int) milliTillFinish;
+                min = (int) (milliTillFinish / (1000 * 60));
+                sec = (int) ((milliTillFinish / 1000) - min * 60);
+
+                tvCountdownMinute.setText(String.format("%02d", min));
+                tvCountdownSecond.setText(String.format("%02d", sec));
+
+//                    disable button
+                btn25.setEnabled(false);
+                btn45.setEnabled(false);
+                btn60.setEnabled(false);
+                Log.i("Tick", "Tock");
+            }
+
+            @Override
+            public void onFinish() {
+                tvCountdownMinute.setText("00");
+                tvCountdownSecond.setText("00");
+                Toast.makeText(CountdownClock.this, "Hết thời gian!", Toast.LENGTH_SHORT).show();
+                MediaPlayer mediaPlayer = MediaPlayer.create(CountdownClock.this, R.raw.alarm);
+                mediaPlayer.start();
+                btn25.setEnabled(true);
+                btn45.setEnabled(true);
+                btn60.setEnabled(true);
+            }
+        };
+        timer.start();
+    }
+    public void timerPause() {
+        timer.cancel();
+    }
+    private void timerResume() {
+        Log.i("min", Long.toString(min));
+        Log.i("Sec", Long.toString(sec));
+        timerStart(milliLeft);
     }
 }
