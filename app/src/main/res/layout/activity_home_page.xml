@@ -138,10 +138,10 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:singleLine="false"
-                        android:text="Đồng hồ tự học"
+                        android:text="Pomodoro"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         tools:ignore="HardcodedText" />

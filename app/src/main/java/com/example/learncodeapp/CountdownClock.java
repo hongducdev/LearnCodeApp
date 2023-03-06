@@ -73,14 +73,14 @@ public class CountdownClock extends AppCompatActivity {
         });
 
         btnStart.setOnClickListener(v -> {
-            if (btnStart.getText().toString().equals("Start")) {
-                btnStart.setText("Pause");
+            if (btnStart.getText().toString().equals("Bắt đầu")) {
+                btnStart.setText("Tạm dừng");
                 timerStart(Integer.parseInt(tvCountdownMinute.getText().toString()) * 60 * 1000 + Integer.parseInt(tvCountdownSecond.getText().toString()) * 1000);
-            } else if (btnStart.getText().toString().equals("Pause")) {
-                btnStart.setText("Resume");
+            } else if (btnStart.getText().toString().equals("Tạm dừng")) {
+                btnStart.setText("Tiếp tục");
                 timerPause();
-            } else if (btnStart.getText().toString().equals("Resume")) {
-                btnStart.setText("Pause");
+            } else if (btnStart.getText().toString().equals("Tiếp tục")) {
+                btnStart.setText("Tạm dừng");
                 timerResume();
             }
         });
@@ -92,6 +92,7 @@ public class CountdownClock extends AppCompatActivity {
             btn25.setEnabled(true);
             btn45.setEnabled(true);
             btn60.setEnabled(true);
+            btnStart.setText("Bắt đầu");
         });
 
     }
@@ -126,7 +127,7 @@ public class CountdownClock extends AppCompatActivity {
                 btn25.setEnabled(true);
                 btn45.setEnabled(true);
                 btn60.setEnabled(true);
-                btnStart.setText("Start");
+                btnStart.setText("Bắt đầu");
             }
         };
         timer.start();

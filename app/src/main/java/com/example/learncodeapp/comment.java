@@ -4,13 +4,10 @@ import static com.example.learncodeapp.Splash.catList;
 import static com.example.learncodeapp.Splash.selected_course_index;
 import static java.text.DateFormat.getDateTimeInstance;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,7 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.Timestamp;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -56,8 +54,8 @@ public class comment extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setTitle(catList.get(selected_course_index).getName());
         getSupportActionBar().setCustomView(R.layout.custom_action_bar_question);
-        View view =getSupportActionBar().getCustomView();
-        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
+        View view = getSupportActionBar().getCustomView();
+        ImageButton imageButton = (ImageButton) view.findViewById(R.id.action_bar_back);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,11 +111,11 @@ public class comment extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-//                                                if(commentList.isEmpty()) {
-//                                                    txtNoData.setVisibility(View.VISIBLE);
-//                                                } else {
-//                                                    txtNoData.setVisibility(View.GONE);
-//                                                }
+                                                if (commentList.isEmpty()) {
+                                                    txtNoData.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    txtNoData.setVisibility(View.GONE);
+                                                }
 
                                                 if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
                                                     edtComment.setVisibility(View.GONE);
@@ -139,6 +137,7 @@ public class comment extends AppCompatActivity {
                         .addOnFailureListener(e -> Toast.makeText(comment.this, "Bình luận thất bại", Toast.LENGTH_SHORT).show());
 
                 commentAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -148,11 +147,12 @@ public class comment extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
-//                            if(commentList.isEmpty()) {
-//                                txtNoData.setVisibility(View.VISIBLE);
-//                            } else {
-//                                txtNoData.setVisibility(View.GONE);
-//                            }
+
+                            if (commentList.isEmpty()) {
+                                txtNoData.setVisibility(View.VISIBLE);
+                            } else {
+                                txtNoData.setVisibility(View.GONE);
+                            }
 
                             if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
                                 edtComment.setVisibility(View.GONE);
