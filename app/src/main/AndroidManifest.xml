@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnCodeApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".comment"
+            android:exported="false" />
         <activity
             android:name=".contact_page"
             android:exported="false" />
@@ -71,9 +73,8 @@
         </activity>
         <activity
             android:name=".HomePage"
-            android:exported="false"
             android:configChanges="colorMode"
-            >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -105,7 +106,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
 </manifest>

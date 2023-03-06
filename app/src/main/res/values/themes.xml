@@ -21,14 +21,6 @@
 
     </style>
 
-    <style name="Theme.AppCompat.DayNight.DarkActionBar" parent="Theme.LearnCodeApp">
-        <!-- Customize your theme here. -->
-    </style>
-
-    <style name="Theme.MaterialComponents.DayNight.DarkActionBar" parent="Theme.LearnCodeApp">
-        <!-- Customize your theme here. -->
-    </style>
-
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>

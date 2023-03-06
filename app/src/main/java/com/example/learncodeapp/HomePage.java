@@ -175,7 +175,8 @@ public class HomePage extends AppCompatActivity {
         });
 
         layout4.setOnClickListener(v -> {
-            Toast.makeText(HomePage.this, "Chức năng đang được phát triển", Toast.LENGTH_SHORT).show();
+            Intent layout4 = new Intent(HomePage.this, comment.class);
+            startActivity(layout4);
         });
     }
 }
