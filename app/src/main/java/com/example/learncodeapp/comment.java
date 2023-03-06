@@ -50,7 +50,6 @@ public class comment extends AppCompatActivity {
         edtComment = findViewById(R.id.edtComment);
         btnComment = findViewById(R.id.btnComment);
         lvComment = findViewById(R.id.lvComment);
-        txtNoData = findViewById(R.id.txtNoData);
 
         // Change header
 //        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -94,6 +93,7 @@ public class comment extends AppCompatActivity {
                 }
 
                 comment.put("username", sharedPreferences.getString("username", ""));
+                comment.put("name", sharedPreferences.getString("name", ""));
                 comment.put("comment", commentContent);
                 comment.put("timestamp", getTimeDate(System.currentTimeMillis()));
 
@@ -113,22 +113,23 @@ public class comment extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                                if(commentList.isEmpty()) {
-                                                    txtNoData.setVisibility(View.VISIBLE);
-                                                } else {
-                                                    txtNoData.setVisibility(View.GONE);
-                                                }
+//                                                if(commentList.isEmpty()) {
+//                                                    txtNoData.setVisibility(View.VISIBLE);
+//                                                } else {
+//                                                    txtNoData.setVisibility(View.GONE);
+//                                                }
 
                                                 if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
                                                     edtComment.setVisibility(View.GONE);
                                                     btnComment.setVisibility(View.GONE);
                                                 }
 
+                                                String name = document.getString("name");
                                                 String username = document.getString("username");
                                                 String comment = document.getString("comment");
                                                 String timestamp = document.getString("timestamp");
 
-                                                commentList.add(new CommentModel(username, comment, timestamp));
+                                                commentList.add(new CommentModel(name, comment, timestamp, username));
                                                 lvComment.setAdapter(commentAdapter);
                                                 commentAdapter.notifyDataSetChanged();
                                             }
@@ -147,27 +148,30 @@ public class comment extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            if(commentList.isEmpty()) {
-                                txtNoData.setVisibility(View.VISIBLE);
-                            } else {
-                                txtNoData.setVisibility(View.GONE);
-                            }
+//                            if(commentList.isEmpty()) {
+//                                txtNoData.setVisibility(View.VISIBLE);
+//                            } else {
+//                                txtNoData.setVisibility(View.GONE);
+//                            }
 
                             if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
                                 edtComment.setVisibility(View.GONE);
                                 btnComment.setVisibility(View.GONE);
                             }
 
+                            String name = document.getString("name");
                             String username = document.getString("username");
                             String comment = document.getString("comment");
                             String timestamp = document.getString("timestamp");
 
-                            commentList.add(new CommentModel(username, comment, timestamp));
+                            commentList.add(new CommentModel(name, comment, timestamp, username));
                             lvComment.setAdapter(commentAdapter);
                             commentAdapter.notifyDataSetChanged();
                             loadingDialog.dismiss();
                         }
                     }
+
+                    loadingDialog.dismiss();
                 });
     }
 

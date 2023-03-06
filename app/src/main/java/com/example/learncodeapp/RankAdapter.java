@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
@@ -14,6 +18,7 @@ public class RankAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<RankModel> rankList;
+    String nameCheck = "";
 
     public RankAdapter(Context context, ArrayList<RankModel> rankList) {
         this.context = context;
@@ -48,10 +53,22 @@ public class RankAdapter extends BaseAdapter {
         tvNameUser.setText(rankList.get(position).getName());
         tvScoreUser.setText(String.valueOf(rankList.get(position).getScore()));
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("username", null);
+
+        db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            nameCheck = document.getString("name");
+                            return;
+                        }
+                    }
+                });
+        Toast.makeText(context, nameCheck, Toast.LENGTH_SHORT).show();
         tvStatus.setText(String.valueOf(position + 1));
-        if (rankList.get(position).getName().equals(name)) {
+        if (rankList.get(position).getName().equals(nameCheck)) {
             tvNameUser.setText("Bạn");
             tvStatus.setTextColor(context.getResources().getColor(R.color.primary));
             tvScoreUser.setTextColor(context.getResources().getColor(R.color.primary));

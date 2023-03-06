@@ -1,12 +1,21 @@
 package com.example.learncodeapp;
 
 public class CommentModel {
-    String name, comment, timestamp;
+    String name, comment, timestamp, username;
 
-    public CommentModel(String name, String comment, String timestamp) {
+    public CommentModel(String name, String comment, String timestamp, String username) {
         this.name = name;
         this.comment = comment;
         this.timestamp = timestamp;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

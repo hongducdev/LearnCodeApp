@@ -32,7 +32,7 @@ public class UserPage extends AppCompatActivity {
         edtChangeName = findViewById(R.id.edtChangeName);
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -66,20 +66,30 @@ public class UserPage extends AppCompatActivity {
         });
 //        đổi tên
         btnChangeName.setOnClickListener(v -> {
+
             db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 db.collection("users").document(document.getId()).update("name", edtChangeName.getText().toString());
-                                Toast.makeText(this, "Thay đổi tên thành công", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+            db.collection("comments").whereEqualTo("username", sharedPreferences.getString("username", ""))
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                db.collection("comments").document(document.getId()).update("name", edtChangeName.getText().toString());
+                            }
+                        }
+                    });
+            editor.putString("name", edtChangeName.getText().toString());
+            Toast.makeText(this, "Thay đổi tên thành công", Toast.LENGTH_SHORT).show();
         });
 
         btnLogout.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();
 

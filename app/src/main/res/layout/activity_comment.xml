@@ -18,13 +18,13 @@
         android:layout_marginBottom="20dp"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Không có dữ liệu để hiển thị!"
-        android:id="@+id/txtNoData"
-        android:layout_below="@+id/txtComment"
-        />
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Không có dữ liệu để hiển thị!"-->
+<!--        android:id="@+id/txtNoData"-->
+<!--        android:layout_below="@+id/txtComment"-->
+<!--        />-->
 
     <ListView
         android:layout_width="match_parent"
