@@ -55,19 +55,46 @@ public class comment extends AppCompatActivity {
 
                 if (commentContent.isEmpty()) {
                     edtComment.setError("Vui lòng nhập đánh giá của bạn");
+                } else {
+                    comment.put("username", sharedPreferences.getString("username", ""));
+                    comment.put("comment", commentContent);
+                    comment.put("timestamp", getTimeDate(System.currentTimeMillis()));
+
+                    db.collection("comments").add(comment)
+                            .addOnSuccessListener(documentReference -> {
+                                Toast.makeText(comment.this, "Bình luận thành công", Toast.LENGTH_SHORT).show();
+                                edtComment.setText("");
+                                db.collection("comments")
+                                        .get().addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                                    if (commentList.isEmpty()) {
+                                                        txtNoData.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        txtNoData.setVisibility(View.GONE);
+                                                    }
+
+                                                    if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
+                                                        edtComment.setVisibility(View.GONE);
+                                                        btnComment.setVisibility(View.GONE);
+                                                    }
+
+                                                    String username = document.getString("username");
+                                                    String comment = document.getString("comment");
+                                                    String timestamp = document.getString("timestamp");
+
+                                                    commentList.add(new CommentModel(username, comment, timestamp));
+                                                    CommentAdapter commentAdapter = new CommentAdapter(comment.this, commentList);
+                                                    lvComment.setAdapter(commentAdapter);
+
+                                                }
+                                            }
+                                        });
+                            })
+                            .addOnFailureListener(e -> Toast.makeText(comment.this, "Bình luận thất bại", Toast.LENGTH_SHORT).show());
+
                 }
-
-
-                comment.put("username", sharedPreferences.getString("username", ""));
-                comment.put("comment", commentContent);
-                comment.put("timestamp", getTimeDate(System.currentTimeMillis()));
-
-                db.collection("comments").add(comment)
-                        .addOnSuccessListener(documentReference -> {
-                            Toast.makeText(comment.this, "Bình luận thành công", Toast.LENGTH_SHORT).show();
-                            edtComment.setText("");
-                        })
-                        .addOnFailureListener(e -> Toast.makeText(comment.this, "Bình luận thất bại", Toast.LENGTH_SHORT).show());
 
             }
         });
@@ -77,7 +104,7 @@ public class comment extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            if(commentList.isEmpty()) {
+                            if (commentList.isEmpty()) {
                                 txtNoData.setVisibility(View.VISIBLE);
                             } else {
                                 txtNoData.setVisibility(View.GONE);

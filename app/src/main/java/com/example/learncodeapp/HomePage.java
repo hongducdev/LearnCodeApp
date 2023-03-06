@@ -65,16 +65,8 @@ public class HomePage extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
 
-        db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String name = document.getString("name");
-                            tvNameHomePage.setText(name);
-                        }
-                    }
-                });
+        String name = sharedPreferences.getString("name", "");
+        tvNameHomePage.setText(name);
 
         List<String> courseImageList = new ArrayList<>();
         List<String> courseIntroductList = new ArrayList<>();
@@ -165,7 +157,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         dongHoDemNguoc.setOnClickListener(v -> {
-            Intent dongHoDemNguoc = new Intent(HomePage.this, CountdownClock.class);
+            Intent dongHoDemNguoc = new Intent(HomePage.this, IntroductionPomodoro.class);
             startActivity(dongHoDemNguoc);
         });
 
