@@ -6,10 +6,13 @@ import static java.text.DateFormat.getDateTimeInstance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -37,6 +40,7 @@ public class comment extends AppCompatActivity {
     Map<String, Object> comment = new HashMap<>();
     ArrayList<CommentModel> commentList = new ArrayList<>();
     TextView txtNoData;
+    Dialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +60,37 @@ public class comment extends AppCompatActivity {
         View view =getSupportActionBar().getCustomView();
         ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
 
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Update database and back
+                Intent intent = new Intent(comment.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         CommentAdapter commentAdapter = new CommentAdapter(comment.this, commentList);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
 
+        loadingDialog = new Dialog(comment.this);
+        loadingDialog.setContentView(R.layout.loading_progressbar);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String commentContent = edtComment.getText().toString();
 
-                if (commentContent.isEmpty()) {
+                if (commentContent.isEmpty() || commentContent.equals(" ") || commentContent.equals("")) {
                     edtComment.setError("Vui lòng nhập đánh giá của bạn");
+                    return;
                 }
 
                 comment.put("username", sharedPreferences.getString("username", ""));
@@ -143,6 +165,7 @@ public class comment extends AppCompatActivity {
                             commentList.add(new CommentModel(username, comment, timestamp));
                             lvComment.setAdapter(commentAdapter);
                             commentAdapter.notifyDataSetChanged();
+                            loadingDialog.dismiss();
                         }
                     }
                 });

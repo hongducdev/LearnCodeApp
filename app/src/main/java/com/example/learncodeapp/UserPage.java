@@ -58,6 +58,9 @@ public class UserPage extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Update database and back
+                Intent intent = new Intent(UserPage.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
