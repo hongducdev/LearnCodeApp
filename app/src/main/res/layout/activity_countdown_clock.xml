@@ -19,7 +19,7 @@
             android:id="@+id/tvCountdownMinute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25"
+            android:text="00"
             android:textSize="50sp" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:id="@+id/tvCountdownSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
+            android:text="10"
             android:textSize="50sp" />
 
     </LinearLayout>
@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="Start" />
+
 
         <Button
             android:id="@+id/btnReset"

@@ -1,12 +1,17 @@
 package com.example.learncodeapp;
 
+import static com.example.learncodeapp.Splash.catList;
+import static com.example.learncodeapp.Splash.selected_course_index;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +21,9 @@ public class CountdownClock extends AppCompatActivity {
 
     TextView tvCountdownMinute, tvCountdownSecond;
     Button btnStart, btnReset, btn25, btn45, btn60;
-    CountDownTimer Timer, timer;
-    int milliLeft,min, sec;
+    CountDownTimer timer;
+
+    int milliLeft, min, sec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,14 @@ public class CountdownClock extends AppCompatActivity {
         btn25 = findViewById(R.id.btn25);
         btn45 = findViewById(R.id.btn45);
         btn60 = findViewById(R.id.btn60);
+
+        // Change header
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle(catList.get(selected_course_index).getName());
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar_question);
+        View view =getSupportActionBar().getCustomView();
+        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
 
         btn25.setOnClickListener(v -> {
             tvCountdownMinute.setText("25");
@@ -50,7 +64,7 @@ public class CountdownClock extends AppCompatActivity {
         btnStart.setOnClickListener(v -> {
             if (btnStart.getText().toString().equals("Start")) {
                 btnStart.setText("Pause");
-                timerStart(25 * 60 * 1000);
+                timerStart(Integer.parseInt(tvCountdownMinute.getText().toString()) * 60 * 1000 + Integer.parseInt(tvCountdownSecond.getText().toString()) * 1000);
             } else if (btnStart.getText().toString().equals("Pause")) {
                 btnStart.setText("Resume");
                 timerPause();
@@ -61,7 +75,7 @@ public class CountdownClock extends AppCompatActivity {
         });
 
         btnReset.setOnClickListener(v -> {
-            Timer.cancel();
+            timer.cancel();
             tvCountdownMinute.setText("25");
             tvCountdownSecond.setText("00");
             btn25.setEnabled(true);
@@ -101,13 +115,16 @@ public class CountdownClock extends AppCompatActivity {
                 btn25.setEnabled(true);
                 btn45.setEnabled(true);
                 btn60.setEnabled(true);
+                btnStart.setText("Start");
             }
         };
         timer.start();
     }
+
     public void timerPause() {
         timer.cancel();
     }
+
     private void timerResume() {
         Log.i("min", Long.toString(min));
         Log.i("Sec", Long.toString(sec));
