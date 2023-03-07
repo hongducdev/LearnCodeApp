@@ -33,10 +33,6 @@ public class UserPage extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-<<<<<<< HEAD
-=======
-
->>>>>>> cb26a2c34d040a61b7c65cc3ccd37d59dfe565a5
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -77,11 +73,6 @@ public class UserPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 db.collection("users").document(document.getId()).update("name", edtChangeName.getText().toString());
-<<<<<<< HEAD
-=======
-                                Toast.makeText(this, "Thay đổi tên thành công", Toast.LENGTH_SHORT).show();
-                                editor.putString("name", edtChangeName.getText().toString());
->>>>>>> cb26a2c34d040a61b7c65cc3ccd37d59dfe565a5
                             }
                         }
                     });

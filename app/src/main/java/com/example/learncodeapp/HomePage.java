@@ -67,8 +67,20 @@ public class HomePage extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
 
-        String name = sharedPreferences.getString("name", "");
-        tvNameHomePage.setText(name);
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document.getData().get("username").equals(sharedPreferences.getString("username", null))) {
+                            tvNameHomePage.setText((String) document.getData().get("name"));
+                        }
+                    }
+                } else {
+                    Toast.makeText(HomePage.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         List<String> courseImageList = new ArrayList<>();
         List<String> courseIntroductList = new ArrayList<>();

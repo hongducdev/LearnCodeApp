@@ -66,7 +66,6 @@ public class RankAdapter extends BaseAdapter {
                         }
                     }
                 });
-        Toast.makeText(context, nameCheck, Toast.LENGTH_SHORT).show();
         tvStatus.setText(String.valueOf(position + 1));
         if (rankList.get(position).getName().equals(nameCheck)) {
             tvNameUser.setText("Bạn");

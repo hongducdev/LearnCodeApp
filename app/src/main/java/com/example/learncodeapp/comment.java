@@ -61,7 +61,7 @@ public class comment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Update database and back
-                Intent intent = new Intent(comment.this, MainActivity.class);
+                Intent intent = new Intent(comment.this, IntroductionPomodoro.class);
                 startActivity(intent);
                 finish();
             }
@@ -111,11 +111,11 @@ public class comment extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                                if (commentList.isEmpty()) {
-                                                    txtNoData.setVisibility(View.VISIBLE);
-                                                } else {
-                                                    txtNoData.setVisibility(View.GONE);
-                                                }
+//                                                if (commentList.isEmpty()) {
+//                                                    txtNoData.setVisibility(View.VISIBLE);
+//                                                } else {
+//                                                    txtNoData.setVisibility(View.GONE);
+//                                                }
 
                                                 if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
                                                     edtComment.setVisibility(View.GONE);
@@ -147,12 +147,11 @@ public class comment extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
-
-                            if (commentList.isEmpty()) {
-                                txtNoData.setVisibility(View.VISIBLE);
-                            } else {
-                                txtNoData.setVisibility(View.GONE);
-                            }
+//                            if (commentList.isEmpty()) {
+//                                txtNoData.setVisibility(View.VISIBLE);
+//                            } else {
+//                                txtNoData.setVisibility(View.GONE);
+//                            }
 
                             if (Objects.equals(document.getString("username"), sharedPreferences.getString("username", ""))) {
                                 edtComment.setVisibility(View.GONE);
