@@ -27,7 +27,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/avatar" />
+            android:src="@drawable/ttd" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/avatar" />
+            android:src="@drawable/nhd" />
 
         <LinearLayout
             android:layout_width="match_parent"

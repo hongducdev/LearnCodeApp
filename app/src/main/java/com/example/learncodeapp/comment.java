@@ -61,7 +61,7 @@ public class comment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Update database and back
-                Intent intent = new Intent(comment.this, IntroductionPomodoro.class);
+                Intent intent = new Intent(comment.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

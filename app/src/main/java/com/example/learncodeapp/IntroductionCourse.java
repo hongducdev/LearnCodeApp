@@ -59,6 +59,8 @@ public class IntroductionCourse extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(IntroductionCourse.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

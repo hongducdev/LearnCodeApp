@@ -51,7 +51,7 @@ public class CountdownClock extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Update database and back
-                Intent intent = new Intent(CountdownClock.this, MainActivity.class);
+                Intent intent = new Intent(CountdownClock.this, IntroductionPomodoro.class);
                 startActivity(intent);
                 finish();
             }

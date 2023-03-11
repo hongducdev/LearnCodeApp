@@ -33,7 +33,6 @@ public class IntroductionPomodoro extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Update database and back
                 Intent intent = new Intent(IntroductionPomodoro.this, MainActivity.class);
                 startActivity(intent);
                 finish();
