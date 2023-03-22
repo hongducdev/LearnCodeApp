@@ -18,7 +18,6 @@ public class RankAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<RankModel> rankList;
-    String nameCheck = "";
 
     public RankAdapter(Context context, ArrayList<RankModel> rankList) {
         this.context = context;
@@ -55,23 +54,15 @@ public class RankAdapter extends BaseAdapter {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        String nameCheck = sharedPreferences.getString("name", "");
 
-        db.collection("users").whereEqualTo("username", sharedPreferences.getString("username", ""))
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            nameCheck = document.getString("name");
-                            return;
-                        }
-                    }
-                });
         tvStatus.setText(String.valueOf(position + 1));
-        if (rankList.get(position).getName().equals(nameCheck)) {
+
+        if (nameCheck.equals(rankList.get(position).getName())) {
             tvNameUser.setText("Bạn");
             tvStatus.setTextColor(context.getResources().getColor(R.color.primary));
-            tvScoreUser.setTextColor(context.getResources().getColor(R.color.primary));
             tvNameUser.setTextColor(context.getResources().getColor(R.color.primary));
+            tvScoreUser.setTextColor(context.getResources().getColor(R.color.primary));
         }
 
         return convertView;
